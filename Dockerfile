@@ -42,10 +42,9 @@ COPY --from=build /etc/apt/sources.list.d/ /etc/apt/sources.list.d
 # renovate: datasource=repology depName=debian_12_backports/git versioning=loose
 ENV GIT_VERSION=1:2.39.2-1.1
 
-RUN echo "deb https://deb.debian.org/debian bookworm-backports main" | tee /etc/apt/sources.list.d/bookworm-backports.list && \
-  apt-get update -y && \
+RUN apt-get update -y && \
   # Install Git
-  apt-get install -y --no-install-recommends -t bookworm-backports git=${GIT_VERSION} && \
+  apt-get install -y --no-install-recommends git=${GIT_VERSION} && \
   # Clean up
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
