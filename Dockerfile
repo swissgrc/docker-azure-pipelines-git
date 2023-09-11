@@ -39,7 +39,7 @@ WORKDIR /
 COPY --from=build /etc/apt/keyrings/ /etc/apt/keyrings
 COPY --from=build /etc/apt/sources.list.d/ /etc/apt/sources.list.d
 
-# renovate: datasource=repology depName=debian_12_backports/git versioning=loose
+# renovate: datasource=repology depName=debian_12/git versioning=loose
 ENV GIT_VERSION=1:2.39.2-1.1
 
 RUN apt-get update -y && \
