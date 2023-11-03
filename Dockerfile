@@ -35,7 +35,7 @@ ENV LIBZ_VERSION=1:1.2.13.dfsg-1
 # renovate: datasource=repology depName=debian_12/gettext versioning=loose
 ENV GETTEXT_VERSION=0.21-12
 # renovate: datasource=repology depName=debian_12/libssl-dev versioning=loose
-ENV LIBSSL_VERSION=3.0.11-1~deb12u1
+ENV LIBSSL_VERSION=3.0.11-1~deb12u2
 # renovate: datasource=repology depName=debian_12/libcurl4-gnutls-dev versioning=loose
 ENV LIBCURLDEV_VERSION=7.88.1-10+deb12u4
 # renovate: datasource=repology depName=debian_12/libexpat1-dev versioning=loose
