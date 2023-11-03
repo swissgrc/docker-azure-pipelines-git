@@ -26,23 +26,22 @@ RUN apt-get update -y && \
 # renovate: datasource=github-tags depName=git/git extractVersion=^v(?<version>.*)$
 ENV GIT_VERSION=2.42.0
 
-# renovate: datasource=repology depName=debian_12/build-essential versioning=loose
+# renovate: datasource=repology depName=debian_12/build-essential-mipsen versioning=loose
 ENV BUILDESSENTIAL_VERSION=12.9
 # renovate: datasource=repology depName=debian_12/dh-autoreconf versioning=loose
 ENV DHAUTORECONF_VERSION=20
-# renovate: datasource=repology depName=debian_12/zlib1g-dev versioning=loose
-ENV LIBZ_VERSION=1:1.2.13.dfsg-1
+# renovate: datasource=repology depName=debian_12/zlib versioning=loose
+ENV LIBZ_VERSION=1.2.13.dfsg
 # renovate: datasource=repology depName=debian_12/gettext versioning=loose
 ENV GETTEXT_VERSION=0.21-12
-# renovate: datasource=repology depName=debian_12/libssl-dev versioning=loose
 ENV LIBSSL_VERSION=3.0.11-1~deb12u2
-# renovate: datasource=repology depName=debian_12/libcurl4-gnutls-dev versioning=loose
+# renovate: datasource=repology depName=debian_12/curl versioning=loose
 ENV LIBCURLDEV_VERSION=7.88.1-10+deb12u4
 # renovate: datasource=repology depName=debian_12/libexpat1-dev versioning=loose
 ENV LIBEXPAT_VERSION=2.5.0-1
 
 # Install necessary dependencies
-RUN apt-get install -y --no-install-recommends build-essential=${BUILDESSENTIAL_VERSION} dh-autoreconf=${DHAUTORECONF_VERSION} zlib1g-dev=${LIBZ_VERSION} gettext=${GETTEXT_VERSION} libssl-dev=${LIBSSL_VERSION} libcurl4-gnutls-dev=${LIBCURLDEV_VERSION} libexpat1-dev=${LIBEXPAT_VERSION} && \
+RUN apt-get install -y --no-install-recommends build-essential=${BUILDESSENTIAL_VERSION} dh-autoreconf=${DHAUTORECONF_VERSION} zlib1g-dev=1:${LIBZ_VERSION}-1 gettext=${GETTEXT_VERSION} libssl-dev=${LIBSSL_VERSION} libcurl4-gnutls-dev=${LIBCURLDEV_VERSION} libexpat1-dev=${LIBEXPAT_VERSION} && \
   # Download Git source code
   curl -L https://github.com/git/git/archive/refs/tags/v${GIT_VERSION}.tar.gz > /tmp/git.tar.gz
 # Extract Git source code
@@ -88,7 +87,7 @@ RUN apt-get update -y && \
 
 # Install Git 
 
-# renovate: datasource=repology depName=debian_12/libcurl3-gnutls versioning=loose
+# renovate: datasource=repology depName=debian_12/curl versioning=loose
 ENV LIBCURL_VERSION=7.88.1-10+deb12u4
 
 # Install necessary dependencies
