@@ -1,5 +1,5 @@
 # Base image containing dependencies used in builder and final image
-FROM ghcr.io/swissgrc/azure-pipelines-dockercli:24.0.6 AS base
+FROM ghcr.io/swissgrc/azure-pipelines-dockercli:24.0.7 AS base
 
 # Make sure to fail due to an error at any stage in shell pipes
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -24,7 +24,7 @@ RUN apt-get update -y && \
   curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
 
 # renovate: datasource=github-tags depName=git/git extractVersion=^v(?<version>.*)$
-ENV GIT_VERSION=2.42.0
+ENV GIT_VERSION=2.42.1
 
 # renovate: datasource=repology depName=debian_12/build-essential-mipsen versioning=loose
 ENV BUILDESSENTIAL_VERSION=12.9
