@@ -24,7 +24,7 @@ RUN apt-get update -y && \
   curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
 
 # renovate: datasource=github-tags depName=git/git extractVersion=^v(?<version>.*)$
-ENV GIT_VERSION=2.43.0
+ENV GIT_VERSION=2.43.1
 
 # renovate: datasource=repology depName=debian_12/build-essential-mipsen versioning=loose
 ENV BUILDESSENTIAL_VERSION=12.9
