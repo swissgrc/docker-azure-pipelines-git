@@ -1,5 +1,5 @@
 # Base image containing dependencies used in builder and final image
-FROM ghcr.io/swissgrc/azure-pipelines-dockercli:24.0.7 AS base
+FROM ghcr.io/swissgrc/azure-pipelines-dockercli:25.0.3 AS base
 
 # Make sure to fail due to an error at any stage in shell pipes
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -11,7 +11,7 @@ FROM base AS build
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # renovate: datasource=repology depName=debian_12/curl versioning=loose
-ENV CURL_VERSION=7.88.1-10+deb12u4
+ENV CURL_VERSION=7.88.1-10+deb12u5
 # renovate: datasource=repology depName=debian_12/lsb-release versioning=loose
 ENV LSBRELEASE_VERSION=12.0-1
 # renovate: datasource=repology depName=debian_12/gnupg2 versioning=loose
@@ -24,7 +24,7 @@ RUN apt-get update -y && \
   curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
 
 # renovate: datasource=github-tags depName=git/git extractVersion=^v(?<version>.*)$
-ENV GIT_VERSION=2.43.0
+ENV GIT_VERSION=2.43.1
 
 # renovate: datasource=repology depName=debian_12/build-essential-mipsen versioning=loose
 ENV BUILDESSENTIAL_VERSION=12.9
@@ -36,7 +36,7 @@ ENV LIBZ_VERSION=1.2.13.dfsg
 ENV GETTEXT_VERSION=0.21-12
 ENV LIBSSL_VERSION=3.0.11-1~deb12u2
 # renovate: datasource=repology depName=debian_12/curl versioning=loose
-ENV LIBCURLDEV_VERSION=7.88.1-10+deb12u4
+ENV LIBCURLDEV_VERSION=7.88.1-10+deb12u5
 # renovate: datasource=repology depName=debian_12/libexpat1-dev versioning=loose
 ENV LIBEXPAT_VERSION=2.5.0-1
 
@@ -76,7 +76,7 @@ COPY --from=build /etc/apt/keyrings/ /etc/apt/keyrings
 COPY --from=build /etc/apt/sources.list.d/ /etc/apt/sources.list.d
 
 # renovate: datasource=github-tags depName=git-lfs/git-lfs extractVersion=^v(?<version>.*)$
-ENV GITLFS_VERSION=3.4.0
+ENV GITLFS_VERSION=3.4.1
 
 RUN apt-get update -y && \
   # Install Git LFS
@@ -88,7 +88,7 @@ RUN apt-get update -y && \
 # Install Git 
 
 # renovate: datasource=repology depName=debian_12/curl versioning=loose
-ENV LIBCURL_VERSION=7.88.1-10+deb12u4
+ENV LIBCURL_VERSION=7.88.1-10+deb12u5
 
 # Install necessary dependencies
 RUN apt-get install -y --no-install-recommends libcurl3-gnutls=${LIBCURL_VERSION}
