@@ -1,5 +1,5 @@
 # Base image containing dependencies used in builder and final image
-FROM ghcr.io/swissgrc/azure-pipelines-dockercli:25.0.3 AS base
+FROM ghcr.io/swissgrc/azure-pipelines-dockercli:25.0.4 AS base
 
 # Make sure to fail due to an error at any stage in shell pipes
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -24,7 +24,7 @@ RUN apt-get update -y && \
   curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
 
 # renovate: datasource=github-tags depName=git/git extractVersion=^v(?<version>.*)$
-ENV GIT_VERSION=2.43.2
+ENV GIT_VERSION=2.44.0
 
 # renovate: datasource=repology depName=debian_12/build-essential-mipsen versioning=loose
 ENV BUILDESSENTIAL_VERSION=12.9
@@ -76,7 +76,7 @@ COPY --from=build /etc/apt/keyrings/ /etc/apt/keyrings
 COPY --from=build /etc/apt/sources.list.d/ /etc/apt/sources.list.d
 
 # renovate: datasource=github-tags depName=git-lfs/git-lfs extractVersion=^v(?<version>.*)$
-ENV GITLFS_VERSION=3.4.1
+ENV GITLFS_VERSION=3.5.1
 
 RUN apt-get update -y && \
   # Install Git LFS
