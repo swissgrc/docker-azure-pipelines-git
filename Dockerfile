@@ -1,5 +1,5 @@
 # Base image containing dependencies used in builder and final image
-FROM ghcr.io/swissgrc/azure-pipelines-dockercli:27.0.2 AS base
+FROM ghcr.io/swissgrc/azure-pipelines-dockercli:27.0.3 AS base
 
 # Make sure to fail due to an error at any stage in shell pipes
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -34,7 +34,7 @@ ENV DHAUTORECONF_VERSION=20
 ENV LIBZ_VERSION=1.2.13.dfsg
 # renovate: datasource=repology depName=debian_12/gettext versioning=loose
 ENV GETTEXT_VERSION=0.21-12
-ENV LIBSSL_VERSION=3.0.11-1~deb12u2
+ENV LIBSSL_VERSION=3.0.13-1~deb12u1
 # renovate: datasource=repology depName=debian_12/curl versioning=loose
 ENV LIBCURLDEV_VERSION=7.88.1-10+deb12u6
 # renovate: datasource=repology depName=debian_12/libexpat1-dev versioning=loose
