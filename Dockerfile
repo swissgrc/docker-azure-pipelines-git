@@ -1,5 +1,5 @@
 # Base image containing dependencies used in builder and final image
-FROM ghcr.io/swissgrc/azure-pipelines-dockercli:26.1.3 AS base
+FROM ghcr.io/swissgrc/azure-pipelines-dockercli:27.1.1 AS base
 
 # Make sure to fail due to an error at any stage in shell pipes
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -11,7 +11,7 @@ FROM base AS build
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # renovate: datasource=repology depName=debian_12/curl versioning=loose
-ENV CURL_VERSION=7.88.1-10+deb12u5
+ENV CURL_VERSION=7.88.1-10+deb12u6
 # renovate: datasource=repology depName=debian_12/lsb-release versioning=loose
 ENV LSBRELEASE_VERSION=12.0-1
 # renovate: datasource=repology depName=debian_12/gnupg2 versioning=loose
@@ -24,7 +24,7 @@ RUN apt-get update -y && \
   curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
 
 # renovate: datasource=github-tags depName=git/git extractVersion=^v(?<version>.*)$
-ENV GIT_VERSION=2.45.2
+ENV GIT_VERSION=2.46.0
 
 # renovate: datasource=repology depName=debian_12/build-essential-mipsen versioning=loose
 ENV BUILDESSENTIAL_VERSION=12.9
@@ -34,9 +34,9 @@ ENV DHAUTORECONF_VERSION=20
 ENV LIBZ_VERSION=1.2.13.dfsg
 # renovate: datasource=repology depName=debian_12/gettext versioning=loose
 ENV GETTEXT_VERSION=0.21-12
-ENV LIBSSL_VERSION=3.0.11-1~deb12u2
+ENV LIBSSL_VERSION=3.0.13-1~deb12u1
 # renovate: datasource=repology depName=debian_12/curl versioning=loose
-ENV LIBCURLDEV_VERSION=7.88.1-10+deb12u5
+ENV LIBCURLDEV_VERSION=7.88.1-10+deb12u6
 # renovate: datasource=repology depName=debian_12/libexpat1-dev versioning=loose
 ENV LIBEXPAT_VERSION=2.5.0-1
 
@@ -88,7 +88,7 @@ RUN apt-get update -y && \
 # Install Git 
 
 # renovate: datasource=repology depName=debian_12/curl versioning=loose
-ENV LIBCURL_VERSION=7.88.1-10+deb12u5
+ENV LIBCURL_VERSION=7.88.1-10+deb12u6
 
 # Install necessary dependencies
 RUN apt-get install -y --no-install-recommends libcurl3-gnutls=${LIBCURL_VERSION}
