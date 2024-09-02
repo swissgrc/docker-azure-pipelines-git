@@ -19,7 +19,10 @@ ENV GNUPG_VERSION=2.2.40-1.1
 
 RUN apt-get update -y && \
   # Install necessary dependencies
-  apt-get install -y --no-install-recommends curl=${CURL_VERSION} lsb-release=${LSBRELEASE_VERSION} gnupg=${GNUPG_VERSION} && \
+  apt-get install -y --no-install-recommends \
+    curl=${CURL_VERSION} \
+    gnupg=${GNUPG_VERSION} \
+    lsb-release=${LSBRELEASE_VERSION} && \
   # Add Git LFS PPA
   curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
 
@@ -40,14 +43,21 @@ ENV LIBCURLDEV_VERSION=7.88.1-10+deb12u7
 # renovate: datasource=repology depName=debian_12/libexpat1-dev versioning=loose
 ENV LIBEXPAT_VERSION=2.5.0-1
 
+# Download and extract Git source code
 ADD https://github.com/git/git/archive/refs/tags/v${GIT_VERSION}.tar.gz /tmp/git.tar.gz
-# Extract Git source code
 WORKDIR /tmp
-RUN apt-get install -y --no-install-recommends build-essential=${BUILDESSENTIAL_VERSION} dh-autoreconf=${DHAUTORECONF_VERSION} zlib1g-dev=1:${LIBZ_VERSION}-1 gettext=${GETTEXT_VERSION} libssl-dev=${LIBSSL_VERSION} libcurl4-gnutls-dev=${LIBCURLDEV_VERSION} libexpat1-dev=${LIBEXPAT_VERSION} && \
-  tar -zxf git.tar.gz 
+RUN tar -zxf git.tar.gz 
 # Build Git from source
 WORKDIR /tmp/git-${GIT_VERSION} 
-RUN make configure && \
+RUN apt-get install -y --no-install-recommends \
+  build-essential=${BUILDESSENTIAL_VERSION} \
+  dh-autoreconf=${DHAUTORECONF_VERSION} \
+  gettext=${GETTEXT_VERSION} \
+  libcurl4-gnutls-dev=${LIBCURLDEV_VERSION} \
+  libexpat1-dev=${LIBEXPAT_VERSION} \
+  libssl-dev=${LIBSSL_VERSION} \
+  zlib1g-dev=1:${LIBZ_VERSION}-1 && \
+  make configure && \
   ./configure --prefix=/usr && \ 
   make all && \ 
   make install && \ 
