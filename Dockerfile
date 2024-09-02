@@ -40,15 +40,13 @@ ENV LIBCURLDEV_VERSION=7.88.1-10+deb12u7
 # renovate: datasource=repology depName=debian_12/libexpat1-dev versioning=loose
 ENV LIBEXPAT_VERSION=2.5.0-1
 
-# Install necessary dependencies
-RUN apt-get install -y --no-install-recommends build-essential=${BUILDESSENTIAL_VERSION} dh-autoreconf=${DHAUTORECONF_VERSION} zlib1g-dev=1:${LIBZ_VERSION}-1 gettext=${GETTEXT_VERSION} libssl-dev=${LIBSSL_VERSION} libcurl4-gnutls-dev=${LIBCURLDEV_VERSION} libexpat1-dev=${LIBEXPAT_VERSION} && \
-  # Download Git source code
-  curl -L https://github.com/git/git/archive/refs/tags/v${GIT_VERSION}.tar.gz > /tmp/git.tar.gz
+ADD https://github.com/git/git/archive/refs/tags/v${GIT_VERSION}.tar.gz /tmp/git.tar.gz
 # Extract Git source code
 WORKDIR /tmp
-RUN tar -zxf git.tar.gz 
-WORKDIR /tmp/git-${GIT_VERSION} 
+RUN apt-get install -y --no-install-recommends build-essential=${BUILDESSENTIAL_VERSION} dh-autoreconf=${DHAUTORECONF_VERSION} zlib1g-dev=1:${LIBZ_VERSION}-1 gettext=${GETTEXT_VERSION} libssl-dev=${LIBSSL_VERSION} libcurl4-gnutls-dev=${LIBCURLDEV_VERSION} libexpat1-dev=${LIBEXPAT_VERSION} && \
+  tar -zxf git.tar.gz 
 # Build Git from source
+WORKDIR /tmp/git-${GIT_VERSION} 
 RUN make configure && \
   ./configure --prefix=/usr && \ 
   make all && \ 
