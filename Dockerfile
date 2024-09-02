@@ -11,7 +11,7 @@ FROM base AS build
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # renovate: datasource=repology depName=debian_12/curl versioning=loose
-ENV CURL_VERSION=7.88.1-10+deb12u6
+ENV CURL_VERSION=7.88.1-10+deb12u7
 # renovate: datasource=repology depName=debian_12/lsb-release versioning=loose
 ENV LSBRELEASE_VERSION=12.0-1
 # renovate: datasource=repology depName=debian_12/gnupg2 versioning=loose
@@ -34,9 +34,9 @@ ENV DHAUTORECONF_VERSION=20
 ENV LIBZ_VERSION=1.2.13.dfsg
 # renovate: datasource=repology depName=debian_12/gettext versioning=loose
 ENV GETTEXT_VERSION=0.21-12
-ENV LIBSSL_VERSION=3.0.13-1~deb12u1
+ENV LIBSSL_VERSION=3.0.14-1~deb12u1
 # renovate: datasource=repology depName=debian_12/curl versioning=loose
-ENV LIBCURLDEV_VERSION=7.88.1-10+deb12u6
+ENV LIBCURLDEV_VERSION=7.88.1-10+deb12u7
 # renovate: datasource=repology depName=debian_12/libexpat1-dev versioning=loose
 ENV LIBEXPAT_VERSION=2.5.0-1
 
@@ -88,7 +88,7 @@ RUN apt-get update -y && \
 # Install Git 
 
 # renovate: datasource=repology depName=debian_12/curl versioning=loose
-ENV LIBCURL_VERSION=7.88.1-10+deb12u6
+ENV LIBCURL_VERSION=7.88.1-10+deb12u7
 
 # Install necessary dependencies
 RUN apt-get install -y --no-install-recommends libcurl3-gnutls=${LIBCURL_VERSION}
