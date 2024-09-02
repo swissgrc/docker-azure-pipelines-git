@@ -106,9 +106,7 @@ COPY --from=build /usr/bin/git /usr/bin/git
 COPY --from=build /usr/libexec/git-core /usr/libexec/git-core
 COPY --from=build /usr/share/git-core/templates /usr/share/git-core/templates
 
-# Smoke test
-RUN git version
-
-# Clean up
-RUN apt-get clean && \
+# Smoke test & cleanup
+RUN git version && \
+  apt-get clean && \
   rm -rf /var/lib/apt/lists/*
