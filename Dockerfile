@@ -83,7 +83,7 @@ COPY --from=build /etc/apt/keyrings/ /etc/apt/keyrings
 COPY --from=build /etc/apt/sources.list.d/ /etc/apt/sources.list.d
 
 # renovate: datasource=github-tags depName=git-lfs/git-lfs extractVersion=^v(?<version>.*)$
-ENV GITLFS_VERSION=3.5.1
+ENV GITLFS_VERSION=3.6.0
 
 RUN apt-get update -y && \
   # Install Git LFS
