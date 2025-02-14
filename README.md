@@ -31,11 +31,12 @@ The following example shows the container used for a deployment step which shows
                     git version
 ```
 
-### Included Software
+## Included Software
+- [swissgrc/azure-pipelines-dockercli](https://github.com/swissgrc/docker-azure-pipelines-dockercli) as base image
 - Git
 - Git LFS
 
-### Tags
+## Tags
 
 | Tag        | Description                                         | Size                                                                                                                         |
 |------------|-----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
